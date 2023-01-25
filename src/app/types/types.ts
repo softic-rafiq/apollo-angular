@@ -9,3 +9,9 @@ export type Course = {
 export type Query = {
   allCourses: Course[];
 };
+
+export interface UserData {
+  username: string;
+  mobile: string;
+  email: string;
+}

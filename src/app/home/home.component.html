@@ -2,6 +2,16 @@
 <div class="list-country">
   <div *ngFor="let item of countries" class="country">
     <div class="content">
+      <p>User Name: {{ item.username }}</p>
+      <p>Mobile: {{ item?.mobile }}</p>
+      <p>Email: {{ item?.email }}</p>
+    </div>
+  </div>
+</div>
+<!-- <p *ngIf="loading">Loading.....</p>
+<div class="list-country">
+  <div *ngFor="let item of countries" class="country">
+    <div class="content">
       <p>Country Name: {{ item.name }}</p>
       <p>Capital Name: {{ item?.capital }}</p>
       <p>Country Code: {{ item?.code }}</p>
@@ -9,4 +19,4 @@
       <p>Phone: {{ item.phone }}</p>
     </div>
   </div>
-</div>
+</div> -->

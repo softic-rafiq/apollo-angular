@@ -31,7 +31,9 @@ export class HomeComponent implements OnInit {
   getCountry() {
     this.homeService.getCountries().subscribe(
       (resp) => {
-        this.countries = resp.data.countries;
+        console.log('first', resp);
+        this.countries = resp.data.getAllUsers;
+        // this.countries = resp.data.countries;
         this.loading = resp.loading;
       },
       (err) => {
