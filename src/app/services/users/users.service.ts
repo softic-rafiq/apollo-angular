@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
+import { REGISTER_USER } from 'src/app/apolloclient/mutation/RegisterUser';
 import { GET_USERS } from 'src/app/apolloclient/query/getUsersQuery';
+import { UserData } from 'src/app/types/types';
 
 @Injectable({
   providedIn: 'root',
@@ -13,9 +15,31 @@ export class UsersService {
 
   constructor(private apollo: Apollo) {}
 
+  fruitForm: UserData = {
+    id: 0,
+    username: 'Rafiq',
+    mobile: '01991166550',
+    email: 'rafiq@softic.ai',
+  };
+  // Get all users
   getUsers(): Observable<any> {
-    return this.apollo.watchQuery<any>({
-      query: GET_USERS,
-    }).valueChanges;
+    return this.apollo
+      .watchQuery<any>({
+        query: GET_USERS,
+      })
+      .valueChanges.pipe(map((result) => result.data.getAllUsers));
+    // .valueChanges.pipe(map(result => result.data.getAllUsers))
+  }
+
+  //Regkister a user
+  registerUser() {
+    return this.apollo.mutate({
+      mutation: REGISTER_USER,
+      variables: {
+        name: this.fruitForm.username,
+        mobile: this.fruitForm.mobile,
+        email: this.fruitForm.email,
+      },
+    });
   }
 }

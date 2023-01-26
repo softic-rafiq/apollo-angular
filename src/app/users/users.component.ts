@@ -17,6 +17,7 @@ export class UsersComponent implements OnInit {
   users: any = [];
   loading = true;
   error: any;
+  response: any;
 
   constructor(private usersService: UsersService) {}
 
@@ -25,6 +26,9 @@ export class UsersComponent implements OnInit {
   dataSource: MatTableDataSource<UserData>;
   // dataSource: UserData[] = [];
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
   ngOnInit() {
     this.getAllUser();
   }
@@ -32,14 +36,30 @@ export class UsersComponent implements OnInit {
   getAllUser() {
     this.usersService.getUsers().subscribe(
       (resp) => {
-        console.log('first', resp.data.getAllUsers);
-        this.dataSource = new MatTableDataSource(resp.data.getAllUsers);
-        this.users = resp.data.getAllUsers;
-        this.loading = resp.loading;
+        console.log('first', resp);
+        this.dataSource = new MatTableDataSource(resp);
+        this.users = resp;
+        // this.loading = resp.loading;
       },
       (err) => {
         console.log('err,err', err);
       }
     );
+  }
+
+  // Register a user
+
+  registerUser() {
+    this.response = this.usersService.registerUser();
+
+    // this.apollo.mutate<CreateLinkMutationResponse>({
+    //   mutation: CREATE_LINK_MUTATION,
+    //   variables: {
+    //     description: this.description,
+    //     url: this.url
+    //   }
+    // }).subscribe((response) => {
+
+    // });
   }
 }

@@ -11,6 +11,7 @@ export type Query = {
 };
 
 export interface UserData {
+  id?: number;
   username: string;
   mobile: string;
   email: string;
