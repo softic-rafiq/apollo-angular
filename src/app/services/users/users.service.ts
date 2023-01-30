@@ -32,13 +32,15 @@ export class UsersService {
   }
 
   //Regkister a user
-  registerUser() {
+  registerUser(data: any): Observable<any> {
+    console.log('Data', data);
     return this.apollo.mutate({
       mutation: REGISTER_USER,
       variables: {
-        name: this.fruitForm.username,
-        mobile: this.fruitForm.mobile,
-        email: this.fruitForm.email,
+        username: data.username,
+        password: data.password,
+        mobile: data.mobile,
+        email: data.email,
       },
     });
   }

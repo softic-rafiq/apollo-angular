@@ -1,0 +1,49 @@
+<div class="dialog-wrapper">
+  <h1 mat-dialog-title class="modal-title">Add User</h1>
+  <div mat-dialog-content>
+    <form action="" [formGroup]="userForm">
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Username</mat-label>
+        <input
+          matInput
+          placeholder="Enter your username"
+          formControlName="username"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          placeholder="Enter your email"
+          formControlName="email"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Mobile</mat-label>
+        <input
+          formControlName="mobile"
+          matInput
+          placeholder="Enter any mobile"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          formControlName="password"
+          matInput
+          placeholder="Enter any password"
+          type="password"
+        />
+      </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions align="end" color="accent">
+    <!-- <button mat-raied-button mat-dialog-close>Close</button> -->
+    <button mat-raised-button color="primary" (click)="registerUser()">
+      Add User
+    </button>
+    <button mat-raised-button mat-dialog-close color="warn">Close</button>
+  </div>
+</div>

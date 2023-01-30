@@ -2,10 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 // import { gql } from '@apollo/client';
 import { MatPaginator } from '@angular/material/paginator';
 // import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { UsersService } from '../services/users/users.service';
 import { UserData } from '../types/types';
-// import { UserData } from '../types/types';
+import { UserAddModalComponent } from './user-add-modal/user-add-modal.component';
 
 @Component({
   selector: 'app-users',
@@ -19,7 +20,7 @@ export class UsersComponent implements OnInit {
   error: any;
   response: any;
 
-  constructor(private usersService: UsersService) {}
+  constructor(private usersService: UsersService, private dialog: MatDialog) {}
 
   displayedColumns: string[] = ['username', 'mobile', 'email'];
 
@@ -47,19 +48,29 @@ export class UsersComponent implements OnInit {
     );
   }
 
+  openUserDialogModal() {
+    this.dialog
+      .open(UserAddModalComponent)
+      .afterClosed()
+      .subscribe((val) => {
+        if (val === 'Add User') {
+          this.getAllUser();
+        }
+      });
+  }
   // Register a user
 
-  registerUser() {
-    this.response = this.usersService.registerUser();
+  // registerUser() {
+  //   this.response = this.usersService.registerUser();
 
-    // this.apollo.mutate<CreateLinkMutationResponse>({
-    //   mutation: CREATE_LINK_MUTATION,
-    //   variables: {
-    //     description: this.description,
-    //     url: this.url
-    //   }
-    // }).subscribe((response) => {
+  //   // this.apollo.mutate<CreateLinkMutationResponse>({
+  //   //   mutation: CREATE_LINK_MUTATION,
+  //   //   variables: {
+  //   //     description: this.description,
+  //   //     url: this.url
+  //   //   }
+  //   // }).subscribe((response) => {
 
-    // });
-  }
+  //   // });
+  // }
 }

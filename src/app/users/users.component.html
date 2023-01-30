@@ -3,6 +3,9 @@
 <h1>{{ title }}</h1>
 
 <div class="mat-elevation-z8 table-wrapper">
+  <button mat-raised-button color="primary" (click)="openUserDialogModal()">
+    Add New User
+  </button>
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="username">
       <th mat-header-cell *matHeaderCellDef>Username</th>
